@@ -1,0 +1,24 @@
+meta:
+  extract_upstream: false
+
+tasks:
+  - name: filter
+    source: scripts/filter.py
+    product:
+      nb: products/filter_{{series}}_report.html
+      train: 'products/train_FD{{series}}.csv'
+      test: 'products/test_FD{{series}}.csv'
+    params:
+      series: '{{series}}'
+
+  - name: visualize_dataset
+    source: scripts/visualize_ds.py
+    product:
+      nb: products/vis_{{series}}.html
+    upstream: [filter]
+
+  - name: fit_lstm
+    source: scripts/fit_lstm.py
+    product:
+      nb: products/lstm_{{series}}_report.html
+    upstream: [filter]

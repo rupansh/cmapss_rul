@@ -1,0 +1,23 @@
+SENSORS = [
+    'fan_inlet_temp',
+    'lpc_outlet_temp',
+    'hpc_outlet_temp',
+    'lpt_outlet_temp',
+    'fan_inlet_press',
+    'bypass_duct_press',
+    "hpc_outlet_press",
+    'fan_rpm',
+    'core_rpm',
+    'engine_press_ratio',
+    'hpc_outlet_static_press',
+    'fuel_flow_ps30_ratio',
+    'corrected_fan_rpm',
+    'corrected_core_rpm',
+    'bypass_ratio',
+    'burner_fuel_air_ratio',
+    'bleed_h',
+    'required_fan_rpm',
+    'required_fan_conv_rpm',
+    'hpt_air_flow',
+    'lpt_air_flow'
+]
