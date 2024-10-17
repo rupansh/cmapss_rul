@@ -22,3 +22,9 @@ tasks:
     product:
       nb: products/lstm_{{series}}_report.html
     upstream: [filter]
+
+  - name: fit_random_forest
+    source: scripts/fit_rf.py
+    product:
+      nb: products/random_forest_{{series}}_report.html
+    upstream: [filter]

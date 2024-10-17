@@ -40,7 +40,7 @@ from sklearn.metrics import root_mean_squared_error, r2_score
 # %%
 # load data
 train_df = pl.read_csv(upstream["filter"]["train"])
-test_df = pl.read_csv(upstream["filter"]["test"]).group_by("engine_id", maintain_order=True).last()
+test_df = pl.read_csv(upstream["filter"]["test"])
 train_df = train_df.drop("engine_id", "cycles", "rul")
 test_df = test_df.drop("engine_id", "cycles", "rul")
 
