@@ -103,6 +103,8 @@ train_df = train_df.drop(*to_drop)
 test_df = test_df.drop(*to_drop)
 train_df.head()
 
+print("Constant features", to_drop)
+
 # %%
 # Keep features with strong correlation
 corr = train_df.corr()
@@ -112,6 +114,8 @@ to_drop = [column for (i, column) in enumerate(corr.columns) if i > 1 and mask[i
 train_df = train_df.drop(*to_drop)
 test_df = test_df.drop(*to_drop)
 train_df.head()
+
+print("Redundant columns", to_drop)
 
 train_df.write_csv(product["train"])
 test_df.write_csv(product["test"])
