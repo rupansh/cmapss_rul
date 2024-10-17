@@ -77,6 +77,9 @@ test_df = test_df.with_columns(
     .alias("rul")
 ).drop(["max_rul", "max_cycles"])
 test_df = test_df.group_by("engine_id", maintain_order=True).last()
+test_df = test_df.with_columns(
+    pl.col("rul").clip(0, 103).alias("rul_clip")
+)
 
 # %%
 # Derive y for train set
@@ -87,6 +90,9 @@ train_df = train_df.with_columns(
     (pl.col("max_rul") - pl.col("cycles"))
     .alias("rul")
 ).drop(["max_rul"])
+train_df = train_df.with_columns(
+    pl.col("rul").clip(0, 103).alias("rul_clip")
+)
 train_df.select("engine_id", "cycles", "rul")
 
 # %%

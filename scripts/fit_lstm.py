@@ -41,20 +41,13 @@ from sklearn.metrics import root_mean_squared_error, r2_score
 # load data
 train_df = pl.read_csv(upstream["filter"]["train"])
 test_df = pl.read_csv(upstream["filter"]["test"]).group_by("engine_id", maintain_order=True).last()
-train_df.drop_in_place("engine_id")
-train_df.drop_in_place("cycles")
-test_df.drop_in_place("engine_id")
-test_df.drop_in_place("cycles")
+train_df = train_df.drop("engine_id", "cycles", "rul")
+test_df = test_df.drop("engine_id", "cycles", "rul")
 
-y_train = train_df["rul"]
-x_train = train_df.drop("rul")
-y_test = test_df["rul"]
-x_test = test_df.drop("rul")
-
-# %%
-# clipping RUL
-y_train = y_train.clip(0, 103)
-y_test = y_test.clip(0, 103)
+y_train = train_df["rul_clip"]
+x_train = train_df.drop("rul_clip")
+y_test = test_df["rul_clip"]
+x_test = test_df.drop("rul_clip")
 
 # %%
 # Convert to nparray
